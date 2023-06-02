@@ -41,6 +41,44 @@ for name, url in websites.items():
 
 #As a result, store all comments in chronological order in JSON and dump it to a file.
 
+import requests
+import json
+
+def download_subreddit_comments(subreddit, save_file_path):
+    url = f"https://api.pushshift.io/reddit/comment/search/?subreddit={subreddit}&size=500"
+    comments = []
+    
+    while True:
+        response = requests.get(url)
+        data = response.json()
+        
+        if 'data' not in data:
+            break
+        
+        comments.extend(data['data'])
+        if len(data['data']) < 500:
+            break
+        
+        # Set the next page URL to fetch the next batch of comments
+        url = f"{url}&before={data['data'][-1]['created_utc']}"
+    
+    # Save the comments to a JSON file
+    with open(save_file_path, 'w') as file:
+        json.dump(comments, file)
+    
+    print(f"Downloaded {len(comments)} comments and saved to {save_file_path}.")
+
+# Example usage
+subreddit_name = "AskReddit"
+save_file_path = "comments.json"
+
+download_subreddit_comments(subreddit_name, save_file_path)
+
+#In the above code, we define a function download_subreddit_comments that takes the subreddit name and the save file path as parameters. It uses a while loop to fetch comments in batches of 500 from the Pushshift API until there are no more comments to fetch.
+
+#The comments are stored in the comments list, and once all comments are fetched, they are saved to the specified JSON file using the json.dump() function.
+
+#You can replace subreddit_name with the desired subreddit you want to download comments from and save_file_path with the path and filename where you want to save the JSON file.
  
 
 #Task 3
