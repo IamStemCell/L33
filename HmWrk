@@ -73,16 +73,16 @@ def get_current_weather(api_key, city):
     else:
         print("Failed to retrieve weather data.")
 
-# Example usage
-api_key = "e7704bc895b4a8d2dfd4a29d404285b6"  #OpenWeatherMap API key
-city_name = input("Enter a city name: ")
+
+api_key = "e7704bc895b4a8d2dfd4a29d404285b6"  #OpenWeatherMap API ключ
+city_name = input("Please enter a city name: ")
 
 get_current_weather(api_key, city_name)
 
-
-#To use this code, you will need to sign up for an API key on the OpenWeatherMap website (https://openweathermap.org/). Once you have obtained the API key, replace "YOUR_API_KEY" in the code with your actual API key.
-
-#When you run the code, it will prompt you to enter a city name. After entering the city name, it will make a request to the OpenWeatherMap API to fetch the current weather data for that city. The weather description, temperature, and humidity will then be displayed on the console.
-
-#Please note that the temperature is provided in Kelvin (K). You can modify the code to convert it to Celsius or Fahrenheit if needed.
+консоль:
+Enter a city name: Berlin
+Weather in Berlin:
+Description: clear sky
+Temperature: 296.78 K
+Humidity: 27%
 
