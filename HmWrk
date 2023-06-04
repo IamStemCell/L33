@@ -62,27 +62,34 @@ def get_current_weather(api_key, city):
     data = response.json()
     
     if response.status_code == 200:
+        #print(data)
         weather_description = data['weather'][0]['description']
         temperature = data['main']['temp']
         humidity = data['main']['humidity']
+        visibility = data['visibility']
+        wind = data['wind']['speed']
         
         print(f"Weather in {city}:")
         print(f"Description: {weather_description}")
         print(f"Temperature: {temperature} K")
         print(f"Humidity: {humidity}%")
+        print(f"Visibility: {visibility}")
+        print(f"Wind: {wind}m/s")
     else:
-        print("Failed to retrieve weather data.")
+        print("Failed to retrieve current weather data.")
 
 
 api_key = "e7704bc895b4a8d2dfd4a29d404285b6"  #OpenWeatherMap API ключ
-city_name = input("Please enter a city name: ")
+city_name = input("Please enter city name: ")
 
 get_current_weather(api_key, city_name)
 
-консоль:
-Enter a city name: Berlin
+#консоль:
+Please enter city name: Berlin
 Weather in Berlin:
 Description: clear sky
 Temperature: 296.78 K
 Humidity: 27%
+Visibility: 10000
+Wind: 2.24 m/s
 
