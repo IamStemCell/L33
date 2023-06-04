@@ -6,28 +6,31 @@
 
 import requests
 
-def download_robots_txt(url, save_path):
-    # Make a GET request to the website's robots.txt URL
+def download_robots_txt(url, save_file): #url звідки, save_file - ім'я файла в який зберігатимемо robots txt
+    # гет реквест методом бібліотеки requests до файлу robots.txt за його URL
     response = requests.get(url + "/robots.txt")
     
     if response.status_code == 200:
-        # Save the content to a file
-        with open(save_path, 'w') as file:
+        # зберігаємо вміст файлу robots.txt до файлу save_file
+        with open(save_file, 'w') as file:
             file.write(response.text)
-        print(f"robots.txt from {url} downloaded and saved successfully.")
+        print(f"robots.txt from {url} was downloaded and saved successfully.")
     else:
         print(f"Failed to download robots.txt from {url}.")
 
-# Example usage
+#словник websites з назвою і url web сайтів
 websites = {
     "Wikipedia": "https://en.wikipedia.org",
     "Twitter": "https://twitter.com",
-    # Add more websites here
+    
 }
 
 for name, url in websites.items():
     save_file_path = f"{name.lower()}_robots.txt"
     download_robots_txt(url, save_file_path)
+
+
+
 
 
 
