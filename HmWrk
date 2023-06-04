@@ -74,7 +74,7 @@ def get_current_weather(api_key, city):
         print("Failed to retrieve weather data.")
 
 # Example usage
-api_key = "YOUR_API_KEY"  # Replace with your OpenWeatherMap API key
+api_key = "e7704bc895b4a8d2dfd4a29d404285b6"  #OpenWeatherMap API key
 city_name = input("Enter a city name: ")
 
 get_current_weather(api_key, city_name)
