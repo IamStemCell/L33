@@ -4,36 +4,18 @@
 
 #Download and save to file robots.txt from wikipedia, twitter websites etc. 
 
+
 import requests
 
-def download_robots_txt(url, save_file): #url звідки, save_file - ім'я файла в який зберігатимемо robots txt
-    # гет реквест методом бібліотеки requests до файлу robots.txt за його URL
-    response = requests.get(url + "/robots.txt")
-    
-    if response.status_code == 200:
-        # зберігаємо вміст файлу robots.txt до файлу save_file
-        with open(save_file, 'w') as file:
-            file.write(response.text)
-        print(f"robots.txt from {url} was downloaded and saved successfully.")
-    else:
-        print(f"Failed to download robots.txt from {url}.")
+url = "https://en.wikipedia.org/robots.txt"
+response = requests.get(url)
+with open('Robots_wiki.txt', 'w', encoding="utf-8") as file:
+    file.write(response.text)
 
-#словник websites з назвою і url web сайтів
-websites = {
-    "Wikipedia": "https://en.wikipedia.org",
-    "Twitter": "https://twitter.com",
-    
-}
-
-for name, url in websites.items():
-    save_file_path = f"{name.lower()}_robots.txt"
-    download_robots_txt(url, save_file_path)
-
-
-
-
-
-
+url = "https://twitter.com/robots.txt"
+response = requests.get(url)
+with open('Robots_twitter.txt', 'w', encoding="utf-8") as file:
+    file.write(response.text)
 
 
 #Task 2
